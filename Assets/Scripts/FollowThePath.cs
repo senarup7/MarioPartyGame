@@ -28,6 +28,7 @@ public class FollowThePath : MonoBehaviour {
         {
             moveCompleted = false;
             Move();
+       
         }
      
         
@@ -35,16 +36,19 @@ public class FollowThePath : MonoBehaviour {
     private Sequence _jumpSequence;
     private void Move()
     {
-
+       
         if (waypointIndex <= waypoints.Length - 1)
         {
-          
-             transform.position = Vector2.MoveTowards(transform.position,
-            waypoints[waypointIndex].transform.position,
-            moveSpeed * Time.deltaTime);
+           
 
-            if (transform.position == waypoints[waypointIndex].transform.position)
+            transform.position = Vector2.MoveTowards(transform.position,
+            waypoints[waypointIndex].transform.position,
+            moveSpeed* Time.deltaTime);
+            Debug.Log(transform.position);
+            if(Vector2.Distance(transform.position, waypoints[waypointIndex].transform.position)<0.01f)
+          // if (transform.position == waypoints[waypointIndex].transform.position)
             {
+                Debug.Log("waypointIndex...."+ waypointIndex);
                 waypointIndex += 1;
 
             }
